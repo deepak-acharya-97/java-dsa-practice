@@ -13,13 +13,10 @@ public class GraphDataStructure {
 		public LinkedList<Integer>[] getAdjacentListArray() {
 			return AdjacentListArray;
 		}
-		
 		public Graph(int v)
 		{
 			this.Vertices=v;
-			
-			this.AdjacentListArray=new LinkedList[v];
-			
+			this.AdjacentListArray=new LinkedList[v];			
 			for(int i=0; i<v; i++)
 			{
 				this.AdjacentListArray[i]=new LinkedList<>();
@@ -31,7 +28,6 @@ public class GraphDataStructure {
 			boolean[] Visited = new boolean[this.Vertices];
 			Visited[src]=true;
 			Queue.add(src);
-			
 			while(Queue.size() != 0)
 			{
 				int current=Queue.poll();
@@ -59,7 +55,7 @@ public class GraphDataStructure {
 	public static void AddEdge(Graph g, int src, int dest)
 	{
 		g.getAdjacentListArray()[src].add(dest);
-		//g.getAdjacentListArray()[dest].add(src);
+		//g.getAdjacentListArray()[dest].add(src); //Considering undirected graph **comment for directed graph**
 	}
 	public static void PrintGraph(Graph g)
 	{
@@ -83,17 +79,13 @@ public class GraphDataStructure {
 		 * PrintGraph(graph);
 		 */
 		Graph g = new Graph(4); 
-		  
         AddEdge(g,0, 1); 
         AddEdge(g,0, 2); 
         AddEdge(g,1, 2); 
         AddEdge(g,2, 0); 
         AddEdge(g,2, 3); 
-        AddEdge(g,3, 3); 
-  
-        System.out.println("Following is Breadth First Traversal "+ 
-                           "(starting from vertex 2)"); 
-  
+        AddEdge(g,3, 3);
+        System.out.println("Following is Breadth First Traversal (starting from vertex 2)"); 
         g.BFS(2); 
 	}
 }
