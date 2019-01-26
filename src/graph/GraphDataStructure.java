@@ -85,7 +85,8 @@ public class GraphDataStructure {
         AddEdge(g,2, 0); 
         AddEdge(g,2, 3); 
         AddEdge(g,3, 3);
-        System.out.println("Following is Breadth First Traversal (starting from vertex 2)"); 
-        g.BFS(2); 
+        int source=2;
+        System.out.println("Following is Breadth First Traversal (starting from vertex "+source+")"); 
+        g.BFS(source); 
 	}
 }
