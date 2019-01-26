@@ -25,6 +25,28 @@ public class GraphDataStructure {
 				this.AdjacentListArray[i]=new LinkedList<>();
 			}
 		}
+		public void BFS(int src)
+		{
+			LinkedList<Integer> Queue = new LinkedList<>();
+			boolean[] Visited = new boolean[this.Vertices];
+			Visited[src]=true;
+			Queue.add(src);
+			
+			while(Queue.size() != 0)
+			{
+				int current=Queue.poll();
+				Print(current+"\t");
+				Iterator<Integer> allAdjacents=this.AdjacentListArray[current].listIterator();
+				while(allAdjacents.hasNext()) {
+					int adjVertex=allAdjacents.next();
+					if(!Visited[adjVertex])
+					{
+						Visited[adjVertex]=true;
+						Queue.add(adjVertex);
+					}
+				}
+			}
+		}
 	}
 	public static <T> void Print(T msg)
 	{
@@ -37,7 +59,7 @@ public class GraphDataStructure {
 	public static void AddEdge(Graph g, int src, int dest)
 	{
 		g.getAdjacentListArray()[src].add(dest);
-		g.getAdjacentListArray()[dest].add(src);
+		//g.getAdjacentListArray()[dest].add(src);
 	}
 	public static void PrintGraph(Graph g)
 	{
@@ -53,16 +75,25 @@ public class GraphDataStructure {
 	}
 	public static void main(String args[])
 	{
-		int V = 5; 
-        Graph graph = new Graph(V); 
-        AddEdge(graph, 0, 1); 
-        AddEdge(graph, 0, 4); 
-        AddEdge(graph, 1, 2); 
-        AddEdge(graph, 1, 3); 
-        AddEdge(graph, 1, 4); 
-        AddEdge(graph, 2, 3); 
-        AddEdge(graph, 3, 4); 
-       
-        PrintGraph(graph); 
+		/*
+		 * int V = 5; Graph graph = new Graph(V); AddEdge(graph, 0, 1); AddEdge(graph,
+		 * 0, 4); AddEdge(graph, 1, 2); AddEdge(graph, 1, 3); AddEdge(graph, 1, 4);
+		 * AddEdge(graph, 2, 3); AddEdge(graph, 3, 4);
+		 * 
+		 * PrintGraph(graph);
+		 */
+		Graph g = new Graph(4); 
+		  
+        AddEdge(g,0, 1); 
+        AddEdge(g,0, 2); 
+        AddEdge(g,1, 2); 
+        AddEdge(g,2, 0); 
+        AddEdge(g,2, 3); 
+        AddEdge(g,3, 3); 
+  
+        System.out.println("Following is Breadth First Traversal "+ 
+                           "(starting from vertex 2)"); 
+  
+        g.BFS(2); 
 	}
 }
