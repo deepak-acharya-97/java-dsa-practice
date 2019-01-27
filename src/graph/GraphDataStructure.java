@@ -43,6 +43,25 @@ public class GraphDataStructure {
 				}
 			}
 		}
+		public void DFSUtil(int src, boolean[] Visited)
+		{
+			Visited[src]=true;
+			Print(src+"\t");
+			Iterator<Integer> adjVertices=this.AdjacentListArray[src].listIterator();
+			while(adjVertices.hasNext())
+			{
+				int current=adjVertices.next();
+				if(!Visited[current])
+				{
+					DFSUtil(current, Visited);
+				}
+			}
+		}
+		public void DFS(int src)
+		{
+			boolean[] Visited=new boolean[this.Vertices];
+			DFSUtil(src, Visited);
+		}
 	}
 	public static <T> void Print(T msg)
 	{
@@ -87,6 +106,8 @@ public class GraphDataStructure {
         AddEdge(g,3, 3);
         int source=2;
         System.out.println("Following is Breadth First Traversal (starting from vertex "+source+")"); 
-        g.BFS(source); 
+        g.BFS(source);
+        System.out.println("Following is Deapth First Traversal (starting from vertex "+source+")"); 
+        g.DFS(source);
 	}
 }
